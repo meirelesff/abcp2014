@@ -1,0 +1,171 @@
+---
+title: "O que importa no recrutamento para as Comissões?"
+subtitle: "Partidos, informação e paroquialismo na Câmara dos Deputados"
+author: "Gustavo Muller (UFSM)"
+date: "Fernando Meireles (UFRGS/Capes)"
+css: estilo.css
+output: 
+ ioslides_presentation:
+  widescreen: false
+  self_contained: false
+---
+## Problema
+
+- Comissões não são necessárias para o funcionamento de um Congresso. Por que elas existem?
+
+>- Quem entra entra em cada uma delas? E por quê?
+
+>- Se pudermos responder esta última, podemos inferir a resposta da anterior.
+
+## Modelos
+
+A literatura sobre o Congresso Americano produziu três modelos principais:
+
+1. Distributivista (_enforcement_ para as transações);
+2. Informacional (incentivos à especialização);
+3. Partidária (extensão do jogo legislativo).
+
+## Distributivista e Informacional
+
+Parâmetros incompatíveis:
+
+   1. Ausência de duas instituições informais no caso brasileiro: _seniority_ e auto-seleção;
+   2. Ausência do controle total de agenda e alta rotatividade;
+  
+## Dados
+
+- Unidade de análise: Deputado-Legislatura;
+- Preditores: _Expertise_ prévia, experiência executiva, reeleição, coerência ideológica, participação em diretórios partidários, disciplina partidária  ($(Disc - \mu) \div 5$);
+- Dependente: pertencer a determinanda Comissão (_dummy_).
+```{r, message=FALSE, echo=FALSE, fig.width=6, fig.height=4, fig.align='center', cache=TRUE}
+require(foreign)
+subdados <- read.dta("subdados.dta")
+counts <- table (subdados$legis,subdados$comissao_inicio)
+barplot(counts,beside=T,col=c("grey20", "grey80"), border=NA)
+legend("top", title="Legislatura",c("52","53"),bty="n", border=NA, fill=c("grey20", "grey80")) 
+
+```
+
+## Resultados (modelos mistos)
+
+```{r, echo=FALSE, message=FALSE, cache=TRUE, fig.width=8.1, fig.height=4.9, fig.align='left'}
+require(foreign)
+require(lme4)
+require(coefplot)
+require(gridExtra)
+dados <- read.dta("dados1.dta")
+
+fit1 <- glmer (ccj ~ advogado + reel + exp_executiva + coe_ideo + diretorio + sdisc +  (1|legis:parini), dados, family="binomial")
+fit2 <- glmer (cft ~ financas + reel + exp_executiva + coe_ideo + diretorio + sdisc +  (1|legis:parini), dados, family="binomial")
+fit3 <- glmer (cssf ~ medico + reel + exp_executiva + coe_ideo + diretorio + sdisc +  (1|legis:parini), dados, family="binomial")
+fit4 <- glmer (capr ~ ruralista + reel + exp_executiva + coe_ideo + diretorio + sdisc +  (1|legis:parini), dados, family="binomial")
+
+p1 <- coefplot(fit1, intercept=F, color="grey20") + theme_set(theme_bw()) + labs(title="CCJ") + theme(axis.text=element_text(colour="grey50"), axis.title=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(), panel.border = element_blank(), plot.background = element_rect(fill ='#F5F5F5'))
+
+p2 <- coefplot(fit2, intercept=F, color="grey20") + theme_set(theme_bw()) + labs(title="CFT") + theme(axis.text=element_text(colour="grey50"),axis.title=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(), panel.border = element_blank(), plot.background = element_rect(fill ='#F5F5F5'))
+
+p3 <- coefplot(fit3, intercept=F, color="grey20") + theme_set(theme_bw()) + labs(title="CSSF") + theme(axis.text=element_text(colour="grey50"),axis.title=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(), panel.border = element_blank(), plot.background = element_rect(fill ='#F5F5F5'))
+
+p4 <- coefplot(fit4, intercept=F, color="grey20") + theme_set(theme_bw()) + labs(title="CAPR") + theme(axis.text=element_text(colour="grey50"),axis.title=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(), panel.border = element_blank(), plot.background = element_rect(fill ='#F5F5F5'))
+
+grid.arrange(p1, p2, p3, p4, ncol=2)
+```
+
+## Resultados (modelos mistos)
+
+- Expertise prévia é o melhor preditor de indicação às Comissões, inclusive para os novatos. 
+
+>- _Drawbacks_: dependência entre os casos, variável dep. fixa exógenamente e chance condicional às chances das demais observações.
+
+## Simulação
+
+- Comparar a estatística (média e mediana) empiricamente observada de cada partido em cada Comissão com as obtidas a partir de amostras aleatórias dos membros de cada partido.
+
+- Agregação todos os partidos para simular os valores sob a hipótese nula de cada Comissão (simulação com cluster).
+
+- Aceitar H1 se `p` for menor que um $\alpha$ (e. g., 0.1), onde `p` é a razão das vezes em que a estatística observada foi maior do que as simuladas.
+
+## Média vs. Mediana (Partido)
+
+```{r echo=FALSE, message=FALSE, cache=TRUE, fig.width=8.1, fig.height=3.7,fig.align='center'}
+source('~/GitHub/Papers/paper_comissoes/graficos_perm.R')
+source('~/GitHub/Papers/paper_comissoes/teste_de_permutacao.r')
+set.seed(1)
+
+grupo <- subset(dados,parini=="PL/PR" & capr==1 & legis==4)
+controle <- subset(dados,parini=="PL/PR" & capr==0 & legis==4)
+outpr <- PermPC(grupo$Discgov,controle$Discgov)
+
+par(mfrow=c(1,2))
+GrafPerm(outpr, "PR/CAPR 53 - Media")
+GrafPermMedian(outpr, "PR/CAPR 53 - Mediana")
+```
+
+## Média vs. Mediana (Comissão)
+
+```{r echo=FALSE, message=FALSE, cache=TRUE, fig.width=8.1, fig.height=3.7,fig.align='center'}
+source('~/GitHub/Papers/paper_comissoes/graficos_perm.R')
+source('~/GitHub/Papers/paper_comissoes/simulacaocluster.R')
+banco53 <- readRDS("banco53.Rda")
+set.seed(1)
+
+capr53 <- SimCluster(Disc,capr,parini,banco53)
+
+par(mfrow=c(1,2))
+GrafPerm(capr53, "CAPR 53 - Media")
+GrafPermMedian(capr53, "CAPR 53 - Mediana")
+```
+
+## Bias pró-H0
+
+```{r echo=FALSE, message=FALSE, cache=TRUE, fig.width=8, fig.height=3.7,fig.align='center'}
+source('~/GitHub/Papers/paper_comissoes/comparar.sim.R')
+source('~/GitHub/Papers/paper_comissoes/simulacaoclusterBias.R')
+set.seed(1)
+
+ccj53 <- SimClusterBiased(Discgov,ccj,parini,banco53)
+
+par(mfrow=c(1,1))
+CompSim(ccj53,"CCJ 53 (gov)","mean")
+```
+
+## Resultados (por Comissão/média)
+
++-----------+---------+---------------+---------+---------------+
+| Comissão  | Leg. 52 | Leg. 52 (gov) | Leg. 53 | Leg. 53 (gov) |
++===========+=========+===============+=========+===============+
+| CCJ       | .38     | .93           | .65     | .91           | 
++-----------+---------+---------------+---------+---------------+
+| CFT       | .74     | .98           | .54     | .75           |
++-----------+---------+---------------+---------+---------------+
+| CAPR      | .41     | .83           | .74     | .34           |
++-----------+---------+---------------+---------+---------------+
+| CSSF      | .89     | .84           | .97     | .54           |
++-----------+---------+---------------+---------+---------------+
+| CECD      | .49     | .42           | .85     | .85           |
++-----------+---------+---------------+---------+---------------+
+
+## Resultados (por Comissão/mediana)
+
++-----------+---------+---------------+---------+---------------+
+| Comissão  | Leg. 52 | Leg. 52 (gov) | Leg. 53 | Leg. 53 (gov) |
++===========+=========+===============+=========+===============+
+| CCJ       | .31     | .96           | .92     | .87           | 
++-----------+---------+---------------+---------+---------------+
+| CFT       | .9      | .98           | .43     | .44           |
++-----------+---------+---------------+---------+---------------+
+| CAPR      | .59     | .29           | .39     | .56           |
++-----------+---------+---------------+---------+---------------+
+| CSSF      | .47     | .88           | .82     | .96           |
++-----------+---------+---------------+---------+---------------+
+| CECD      | .83     | .53           | .15     | .85           |
++-----------+---------+---------------+---------+---------------+
+
+## Resultados (por partido)
+
+- Na CCJ, o PMDB indicou membros significativamente menos disciplinados (gov. e part.) nas duas Legislaturas; na CFT, na Legislatura 52; e na CSSF, na 53;
+
+- Na CAPR, o PFL indicou membros significativamente mais disciplinados na Legislatura 53;
+
+- Nos demais casos, nenhum padrão aparente.
+
