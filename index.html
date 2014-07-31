@@ -86,18 +86,23 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Fernando Meireles (UFRGS)</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Fernando Meireles (UFRGS/Capes)</p>
           </hgroup>
   </slide>
 
 <slide class=''><hgroup><h2>Problema</h2></hgroup><article  id="problema">
 
 <ul>
-<li><p>Comissões não são necessárias para o funcionamento de um Congresso. Por que elas existem?</p></li>
-<li><p>Quem entra entra em cada uma delas? E por quê?</p></li>
+<li>Comissões não são necessárias para o funcionamento de um Congresso. Por que elas existem?</li>
 </ul>
 
-<p>Se pudermos responder esta última, podemos inferir a resposta da anterior.</p>
+<ul class = 'build'>
+<li>Quem entra entra em cada uma delas? E por quê?</li>
+</ul>
+
+<ul class = 'build'>
+<li>Se pudermos responder esta última, podemos inferir a resposta da anterior.</li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Modelos</h2></hgroup><article  id="modelos">
 
@@ -126,15 +131,18 @@
 <li>Dependente: pertencer a determinanda Comissão (<em>dummy</em>). <img src="index_files/figure-html/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="576" style="display: block; margin: auto;" /></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Resultados (modelo misto - CCJ)</h2></hgroup><article  id="resultados-modelo-misto---ccj">
+</article></slide><slide class=''><hgroup><h2>Resultados (modelos mistos)</h2></hgroup><article  id="resultados-modelos-mistos">
 
-<p><img src="index_files/figure-html/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="720" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="777.6" style="display: block; margin: auto auto auto 0;" /></p>
 
-</article></slide><slide class=''><hgroup><h2>Resultados (modelos misto)</h2></hgroup><article  id="resultados-modelos-misto">
+</article></slide><slide class=''><hgroup><h2>Resultados (modelos mistos)</h2></hgroup><article  id="resultados-modelos-mistos-1">
 
 <ul>
-<li><p>Nas outras Comissões analisadas, resultados semelhantes: expertise prévia é o melhor preditor de indicação às Comissões, inclusive para os novatos.</p></li>
-<li><p>Se não se pode incentivar a especialização, pode-se ao menos aproveitar a experiência prévia dos parlamentares.</p></li>
+<li>Expertise prévia é o melhor preditor de indicação às Comissões, inclusive para os novatos.</li>
+</ul>
+
+<ul class = 'build'>
+<li><em>Drawbacks</em>: dependência entre os casos, variável dep. fixa exógenamente e chance condicional às chances das demais observações.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Simulação</h2></hgroup><article  id="simulacao">
@@ -145,9 +153,121 @@
 <li><p>Aceitar H1 se <code>p</code> for menor que um \(\alpha\) (e. g., 0.1), onde <code>p</code> é a razão das vezes em que a estatística observada foi maior do que as simuladas.</p></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Média vs. Mediana</h2></hgroup><article  id="media-vs.-mediana">
+</article></slide><slide class=''><hgroup><h2>Média vs. Mediana (Partido)</h2></hgroup><article  id="media-vs.-mediana-partido">
 
-<p><img src="index_files/figure-html/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="777.6" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Média vs. Mediana (Comissão)</h2></hgroup><article  id="media-vs.-mediana-comissao">
+
+<p><img src="index_files/figure-html/unnamed-chunk-4.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="777.6" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Bias pró-H0</h2></hgroup><article  id="bias-pro-h0">
+
+<p><img src="index_files/figure-html/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="768" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Resultados (por Comissão/média)</h2></hgroup><article  id="resultados-por-comissaomedia">
+
+<table class = 'rmdtable'>
+<col width="16%" />
+<col width="13%" />
+<col width="22%" />
+<col width="13%" />
+<col width="22%" />
+<tr class="header">
+<th align="left">Comissão</th>
+<th align="left">Leg. 52</th>
+<th align="left">Leg. 52 (gov)</th>
+<th align="left">Leg. 53</th>
+<th align="left">Leg. 53 (gov)</th>
+</tr>
+<tr class="odd">
+<td align="left"><p>CCJ</p></td>
+<td align="left"><p>.38</p></td>
+<td align="left"><p>.93</p></td>
+<td align="left"><p>.65</p></td>
+<td align="left"><p>.91</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>CFT</p></td>
+<td align="left"><p>.74</p></td>
+<td align="left"><p>.98</p></td>
+<td align="left"><p>.54</p></td>
+<td align="left"><p>.75</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>CAPR</p></td>
+<td align="left"><p>.41</p></td>
+<td align="left"><p>.83</p></td>
+<td align="left"><p>.74</p></td>
+<td align="left"><p>.34</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>CSSF</p></td>
+<td align="left"><p>.89</p></td>
+<td align="left"><p>.84</p></td>
+<td align="left"><p>.97</p></td>
+<td align="left"><p>.54</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>CECD</p></td>
+<td align="left"><p>.49</p></td>
+<td align="left"><p>.42</p></td>
+<td align="left"><p>.85</p></td>
+<td align="left"><p>.85</p></td>
+</tr>
+</table>
+
+</article></slide><slide class=''><hgroup><h2>Resultados (por Comissão/mediana)</h2></hgroup><article  id="resultados-por-comissaomediana">
+
+<table class = 'rmdtable'>
+<col width="16%" />
+<col width="13%" />
+<col width="22%" />
+<col width="13%" />
+<col width="22%" />
+<tr class="header">
+<th align="left">Comissão</th>
+<th align="left">Leg. 52</th>
+<th align="left">Leg. 52 (gov)</th>
+<th align="left">Leg. 53</th>
+<th align="left">Leg. 53 (gov)</th>
+</tr>
+<tr class="odd">
+<td align="left"><p>CCJ</p></td>
+<td align="left"><p>.31</p></td>
+<td align="left"><p>.96</p></td>
+<td align="left"><p>.92</p></td>
+<td align="left"><p>.87</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>CFT</p></td>
+<td align="left"><p>.9</p></td>
+<td align="left"><p>.98</p></td>
+<td align="left"><p>.43</p></td>
+<td align="left"><p>.44</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>CAPR</p></td>
+<td align="left"><p>.59</p></td>
+<td align="left"><p>.29</p></td>
+<td align="left"><p>.39</p></td>
+<td align="left"><p>.56</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>CSSF</p></td>
+<td align="left"><p>.47</p></td>
+<td align="left"><p>.88</p></td>
+<td align="left"><p>.82</p></td>
+<td align="left"><p>.96</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>CECD</p></td>
+<td align="left"><p>.83</p></td>
+<td align="left"><p>.53</p></td>
+<td align="left"><p>.15</p></td>
+<td align="left"><p>.85</p></td>
+</tr>
+</table>
 
 </article></slide><slide class=''><hgroup><h2>Resultados (por partido)</h2></hgroup><article  id="resultados-por-partido">
 
@@ -155,9 +275,7 @@
 <li><p>Na CCJ, o PMDB indicou membros significativamente menos disciplinados (gov. e part.) nas duas Legislaturas; na CFT, na Legislatura 52; e na CSSF, na 53;</p></li>
 <li><p>Na CAPR, o PFL indicou membros significativamente mais disciplinados na Legislatura 53;</p></li>
 <li><p>Nos demais casos, nenhum padrão aparente.</p></li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Resultados (por Comissão)</h2></hgroup><article  id="resultados-por-comissao"></article></slide>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
