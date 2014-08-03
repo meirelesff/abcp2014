@@ -3,11 +3,11 @@ title: "O que importa no recrutamento para as Comissões?"
 subtitle: "Partidos, informação e paroquialismo na Câmara dos Deputados"
 author: "Gustavo Muller (UFSM)"
 date: "Fernando Meireles (UFRGS/Capes)"
-css: estilo.css
-output: 
- ioslides_presentation:
-  widescreen: false
-  self_contained: false
+output:
+  ioslides_presentation:
+    self_contained: false
+    widescreen: false
+    css: estilo.css
 ---
 ## Problema
 
@@ -168,4 +168,25 @@ CompSim(ccj53,"CCJ 53 (gov)","mean")
 - Na CAPR, o PFL indicou membros significativamente mais disciplinados na Legislatura 53;
 
 - Nos demais casos, nenhum padrão aparente.
+
+## Conclusões
+
+1. _Expertise_ prévia é o melhor preditor de recrutamento;
+2. Comissões importantes frequentemente possuem membros pouco disciplinados;
+3. Desagregando por partidos, poucos padrões nítidos aparecem, mas existe muita variação entre eles;
+4. Recrutar _preference outliers_ parece ser a estratégia 
+usada para motivar a produção de informação na Câmara.
+
+## Anexos
+
+__Fontes__
+
+  - Banco de dados Legislativos - CEBRAP;
+  - Câmara dos Deputados - [www.camara.gov.br](http://www.camara.gov.br/);
+  - Deputados brasileiros: repertório biográfico (vários anos).
+  
+__Links__
+
+  - R-scripts: [github.com/meirelesff](https://github.com/meirelesff/) ;
+  - Slides: [meirelesff.github.io/abcp2014](http://meirelesff.github.io/abcp2014) .
 

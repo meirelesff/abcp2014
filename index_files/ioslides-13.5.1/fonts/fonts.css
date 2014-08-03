@@ -28,3 +28,10 @@
   font-weight: 400;
   src:  url(SourceCodePro.woff) format('woff'), url(SourceCodePro.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 400;
+  src:  url(Vollkorn-Regular.ttf) format('ttf'), url(Vollkorn-Regular.ttf) format('truetype');
+}
