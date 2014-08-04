@@ -22,15 +22,17 @@ output:
 A literatura sobre o Congresso Americano produziu três modelos principais:
 
 1. Distributivista (_enforcement_ para as transações);
-2. Informacional (incentivos à especialização);
-3. Partidária (extensão do jogo legislativo).
-
-## Distributivista e Informacional
+2. Partidária (extensão do jogo legislativo).
+3. Informacional (incentivos à especialização);
+ 
+## Parâmetros
 
 Parâmetros incompatíveis:
 
    1. Ausência de duas instituições informais no caso brasileiro: _seniority_ e auto-seleção;
-   2. Ausência do controle total de agenda e alta rotatividade;
+   2. Ausência do controle da agenda;
+   
+Hipóteses: recrutamento partidário e de _preference outliers_.   
   
 ## Dados
 
@@ -75,13 +77,13 @@ grid.arrange(p1, p2, p3, p4, ncol=2)
 
 - Expertise prévia é o melhor preditor de indicação às Comissões, inclusive para os novatos. 
 
->- _Drawbacks_: dependência entre os casos, variável dep. fixa exógenamente e chance condicional às chances das demais observações.
+>- _Drawbacks_: dependência entre os casos, variável dep. fixa exógenamente, chance condicional às chances das demais observações e raridade do evento.
 
 ## Simulação
 
 - Comparar a estatística (média e mediana) empiricamente observada de cada partido em cada Comissão com as obtidas a partir de amostras aleatórias dos membros de cada partido.
 
-- Agregação todos os partidos para simular os valores sob a hipótese nula de cada Comissão (simulação com cluster).
+- Agregação de todos os partidos para simular os valores sob a hipótese nula de cada Comissão (simulação com cluster).
 
 - Aceitar H1 se `p` for menor que um $\alpha$ (e. g., 0.1), onde `p` é a razão das vezes em que a estatística observada foi maior do que as simuladas.
 
@@ -172,8 +174,8 @@ CompSim(ccj53,"CCJ 53 (gov)","mean")
 ## Conclusões
 
 1. _Expertise_ prévia é o melhor preditor de recrutamento;
-2. Comissões importantes frequentemente possuem membros pouco disciplinados;
-3. Desagregando por partidos, poucos padrões nítidos aparecem, mas existe muita variação entre eles;
+2. Comissões importantes possuem membros pouco disciplinados;
+3. Desagregando por partidos, poucos padrões nítidos aparecem;
 4. Recrutar _preference outliers_ parece ser a estratégia 
 usada para motivar a produção de informação na Câmara.
 
